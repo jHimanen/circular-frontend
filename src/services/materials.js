@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'http://localhost:1337/materials'
+const url = 'http://0.0.0.0:1337/materials'
 
 const getAll = () => {
     const req = axios.get(url)

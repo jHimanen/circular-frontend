@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'http://localhost:1337/buildings'
+const url = 'http://0.0.0.0:1337/buildings'
 
 const getAll = () => {
     const req = axios.get(url)

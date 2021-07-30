@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Building from './components/Building'
 import Material from './components/Material'
+import Detailed from './components/Detailed'
 import buildingService from './services/buildings'
 import materialService from './services/materials'
 import './App.css'
@@ -8,6 +9,7 @@ import './App.css'
 const App = () => {
   const [buildings, setBuildings] = useState([])
   const [materials, setMaterials] = useState([])
+  const [detailed, setDetailed] = useState({})
 
   useEffect(() => {
     buildingService.getAll().then(buildings => 
@@ -18,8 +20,14 @@ const App = () => {
     )
   }, [])
 
+  const chooseDetailed = (id) => {
+    const chosen = materials.find(material => material.id === id)
+    setDetailed(chosen)
+  }
+
   return (
     <div>
+      
       <div>
         <h2>Selaa kohteita ja materiaaleja</h2>
       </div>
@@ -39,8 +47,19 @@ const App = () => {
 
       <div className='container'>
         {materials.map(material =>
-          <Material key={material.id} material={material} />)}
+          <div key={material.id} onClick={() => chooseDetailed(material.id)}>
+            <Material material={material} />
+          </div>
+        )}
       </div>
+
+      <div><Detailed material={detailed}/></div>
+
+      {Object.keys(detailed).length === 0
+        ? null
+        : <button onClick={() => setDetailed({})}>Piilota</button>
+      }
+
     </div>
   );
 }
