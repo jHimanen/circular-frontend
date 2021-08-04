@@ -3,10 +3,10 @@ import React from 'react'
 const Detailed = ({ material }) => {
     return (
         <div>
-            <p>{material.Title}</p>
-            <p>{material.Description}</p>
-            <p>{material.Usage}</p>
-            <p>{material.ThermalConductivity}</p>
+            <p>Materiaali: {material.Title}</p>
+            <p>Kuvaus: {material.Description}</p>
+            <p>Käyttö: {material.Usage}</p>
+            <p>Lämmönjohtavuus: {material.ThermalConductivity}</p>
         </div>
     )
 }
