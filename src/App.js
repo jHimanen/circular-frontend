@@ -31,6 +31,18 @@ const App = () => {
     setDetailed(chosen)
   }
 
+  const getNews = () => {
+    console.log('Deleting old news...')
+    articles.map(article => article.id).forEach(id => {
+      console.log(`Deleting ${id}...`)
+      articleService.deleteOne(id)
+    })
+
+    articleService.getAll().then(articles =>
+      setArticles( articles )
+    )
+  }
+
   return (
     <div>
       
@@ -61,16 +73,15 @@ const App = () => {
 
       {Object.keys(detailed).length === 0
         ? null
-        : <Detailed material={detailed}/>
-      }
-
-      {Object.keys(detailed).length === 0
-        ? null
-        : <button onClick={() => setDetailed({})}>Piilota</button>
+        : (<div>
+            <Detailed material={detailed}/>
+            <button onClick={() => setDetailed({})}>Piilota</button>
+          </div>)
       }
 
       <div>
         <h2>Uutiset</h2>
+        <button onClick={getNews}>Päivitä uutiset</button>
       </div>
 
       <div>
