@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+    circular-platform:
+        image: strapi/strapi
+        container_name: circular-platform
+        restart: unless-stopped
+        env_file: .env
+        environment:
+            DATABASE_NAME: ${DATABASE_NAME}
+            DATABASE_HOST: ${DATABASE_HOST}
+            DATABASE_PORT: ${DATABASE_PORT}
+            DATABASE_USERNAME: ${DATABASE_USERNAME}
+            DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+            ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+            NEWS_API_KEY: ${NEWS_API_KEY}
+        networks:
+            - strapi-app-network
+        volumes:
+            - ../circular-platform:/srv/app
+        ports:
+            - "1337:1337"
+    
+    frontend:
+        container_name: circular-frontend
+        build: .
+        volumes:
+            - '.:/app'
+            - '/app/node_modules'
+        ports:
+            - 3000:3000
+        stdin_open: true
+        environment:
+            - CHOKIDAR_USEPOLLING=true
+        command: npm start
+
+networks:
+    strapi-app-network:
+        driver: bridge
+
+volumes:
+    strapidata:

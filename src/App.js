@@ -32,9 +32,7 @@ const App = () => {
   }
 
   const getNews = () => {
-    console.log('Deleting old news...')
     articles.map(article => article.id).forEach(id => {
-      console.log(`Deleting ${id}...`)
       articleService.deleteOne(id)
     })
 
