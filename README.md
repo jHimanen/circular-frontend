@@ -8,4 +8,4 @@ To run the whole application locally with Docker Compose, follow these steps:
 
 3) Ask the author for the contents of .env and copy them into that file.
 
-4) Run docker-compose up in the frontend root, and the application should start (backend on port 1337 and fronted on 3000).
+4) Run `docker-compose up` in the frontend root, and the application should start (backend on port 1337 and fronted on 3000).
