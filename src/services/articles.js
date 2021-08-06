@@ -7,14 +7,8 @@ const getAll = () => {
     return req.then(res => res.data)
 }
 
-const deleteOne = (id) => {
-    const req = axios.delete(`${url}/${id}`)
-    return req.then(res => res.data)
-}
-
 const articlesMethods = {
-    getAll,
-    deleteOne
+    getAll
 }
 
 export default articlesMethods

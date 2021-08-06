@@ -31,16 +31,6 @@ const App = () => {
     setDetailed(chosen)
   }
 
-  const getNews = () => {
-    articles.map(article => article.id).forEach(id => {
-      articleService.deleteOne(id)
-    })
-
-    articleService.getAll().then(articles =>
-      setArticles( articles )
-    )
-  }
-
   return (
     <div>
       
@@ -77,10 +67,7 @@ const App = () => {
           </div>)
       }
 
-      <div>
-        <h2>Uutiset</h2>
-        <button onClick={getNews}>Päivitä uutiset</button>
-      </div>
+      <h2>Uutiset</h2>
 
       <div>
         {articles.map(article => 
