@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Material from './components/Material'
 import Detailed from './components/Detailed'
 import Article from './components/Article'
+import Notice from './components/Notice'
 import materialService from './services/materials'
 import articleService from './services/articles'
 import noticeService from './services/notices'
@@ -11,8 +12,12 @@ const App = () => {
   const [materials, setMaterials] = useState([])
   const [detailed, setDetailed] = useState({})
   const [articles, setArticles] = useState([])
+  const [notices, setNotices] = useState([])
 
   useEffect(() => {
+    noticeService.getAll().then(notices =>
+      setNotices( notices )  
+    )
     materialService.getAll().then(materials =>
       setMaterials( materials )
     )
@@ -31,6 +36,16 @@ const App = () => {
       
       <div>
         <h1>Selaa ilmoituksia ja materiaaleja</h1>
+      </div>
+
+      <div>
+        <h2>Ilmoitukset</h2>
+      </div>
+
+      <div>
+        {notices.map(notice =>
+          <Notice key={notice.id} notice={notice} />  
+        )}
       </div>
 
       <div>
