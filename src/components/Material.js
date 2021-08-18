@@ -4,8 +4,8 @@ import './Material.css'
 const Material = ({ material }) => {
     return (
         <div className='materialbox'>
-            <p className='titlebox'>{material.Title}</p>
-            <p>{material.Description}</p>
+            <p className='titlebox'>{material.classification}</p>
+            <p>{material.description}</p>
         </div>
     )
 }

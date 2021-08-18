@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import Building from './components/Building'
 import Material from './components/Material'
 import Detailed from './components/Detailed'
 import Article from './components/Article'
-import buildingService from './services/buildings'
 import materialService from './services/materials'
 import articleService from './services/articles'
+import noticeService from './services/notices'
 import './App.css'
 
 const App = () => {
-  const [buildings, setBuildings] = useState([])
   const [materials, setMaterials] = useState([])
   const [detailed, setDetailed] = useState({})
   const [articles, setArticles] = useState([])
 
   useEffect(() => {
-    buildingService.getAll().then(buildings => 
-      setBuildings( buildings )
-    )
     materialService.getAll().then(materials =>
       setMaterials( materials )
     )
@@ -35,16 +30,7 @@ const App = () => {
     <div>
       
       <div>
-        <h1>Selaa kohteita ja materiaaleja</h1>
-      </div>
-
-      <div>
-        <h2>Kohteet</h2>
-      </div>
-
-      <div className='container'>
-        {buildings.map(building =>
-          <Building key={building.id} building={building} />)}
+        <h1>Selaa ilmoituksia ja materiaaleja</h1>
       </div>
 
       <div>
