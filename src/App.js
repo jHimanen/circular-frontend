@@ -4,10 +4,12 @@ import Detailed from './components/Detailed'
 import Article from './components/Article'
 import Notice from './components/Notice'
 import LoginForm from './components/LoginForm'
+import RegisterForm from './components/RegisterForm'
 import materialService from './services/materials'
 import articleService from './services/articles'
 import noticeService from './services/notices'
 import loginService from './services/login'
+import registerService from './services/register'
 import './App.css'
 
 const App = () => {
@@ -63,6 +65,15 @@ const App = () => {
     console.log('logging out', user.user.username)
     window.localStorage.clear()
     setUser(null)
+  }
+
+  const handleRegistration = async (credentials) => {
+    try {
+      const newUser = await registerService.register(credentials)
+      console.log('Registering new user with', credentials.username, credentials.setMaterials, credentials.password)
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
   return (
