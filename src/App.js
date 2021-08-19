@@ -3,9 +3,11 @@ import Material from './components/Material'
 import Detailed from './components/Detailed'
 import Article from './components/Article'
 import Notice from './components/Notice'
+import LoginForm from './components/LoginForm'
 import materialService from './services/materials'
 import articleService from './services/articles'
 import noticeService from './services/notices'
+import loginService from './services/login'
 import './App.css'
 
 const App = () => {
@@ -13,17 +15,26 @@ const App = () => {
   const [detailed, setDetailed] = useState({})
   const [articles, setArticles] = useState([])
   const [notices, setNotices] = useState([])
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     noticeService.getAll().then(notices =>
-      setNotices( notices )  
+      setNotices( notices.slice(0, 3) )  
     )
     materialService.getAll().then(materials =>
       setMaterials( materials )
     )
     articleService.getAll().then(articles =>
-      setArticles( articles )
+      setArticles( articles.slice(0, 5) )
     )
+  }, [])
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+    }
   }, [])
 
   const chooseDetailed = (id) => {
@@ -31,8 +42,39 @@ const App = () => {
     setDetailed(chosen)
   }
 
+  const handleLogin = async (credentials) => {
+    try {
+      const user = await loginService.login(credentials)
+      console.log('Logging in with', credentials.identifier, credentials.password)
+
+      window.localStorage.setItem(
+        'loggedUser', JSON.stringify(user)
+      )
+
+      setUser(user)
+
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+  const handleLogout = (event) => {
+    event.preventDefault()
+    console.log('logging out', user.user.username)
+    window.localStorage.clear()
+    setUser(null)
+  }
+
   return (
     <div>
+
+      {user === null
+        ? (
+          <div>
+            <LoginForm login={handleLogin} />
+          </div>)
+        : <button onClick={handleLogout}>Logout</button>
+      }
       
       <div>
         <h1>Selaa ilmoituksia ja materiaaleja</h1>
