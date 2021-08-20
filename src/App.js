@@ -70,7 +70,7 @@ const App = () => {
   const handleRegistration = async (credentials) => {
     try {
       const newUser = await registerService.register(credentials)
-      console.log('Registering new user with', credentials.username, credentials.setMaterials, credentials.password)
+      console.log('Registering new user with', credentials.username, credentials.email, credentials.password)
     } catch (error) {
       console.log(error.message)
     }
@@ -78,14 +78,16 @@ const App = () => {
 
   return (
     <div>
+      <div className='loginbar'>
+        {user === null
+          ? (<div>
+              <LoginForm login={handleLogin} />
 
-      {user === null
-        ? (
-          <div>
-            <LoginForm login={handleLogin} />
-          </div>)
-        : <button onClick={handleLogout}>Logout</button>
-      }
+              <RegisterForm register={handleRegistration} />
+            </div>)
+          : <div><button onClick={handleLogout}>Logout</button></div>
+        }
+      </div>
       
       <div>
         <h1>Selaa ilmoituksia ja materiaaleja</h1>
@@ -95,7 +97,7 @@ const App = () => {
         <h2>Ilmoitukset</h2>
       </div>
 
-      <div>
+      <div className='container'>
         {notices.map(notice =>
           <Notice key={notice.id} notice={notice} />  
         )}

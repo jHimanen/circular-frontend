@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import './Form.css'
 
 const LoginForm = ({ login }) => {
 
@@ -14,8 +15,8 @@ const LoginForm = ({ login }) => {
     }
     return (
         <div>
-            <h2>Login</h2>
             <form onSubmit={submitCredentials}>
+                <h3>Login</h3>
                 <div>
                     Username
                     <input

@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import './Form.css'
 
 const RegisterForm = ({ register }) => {
 
@@ -16,8 +17,8 @@ const RegisterForm = ({ register }) => {
     }
     return (
         <div>
-            <h2>Register</h2>
             <form onSubmit={submitCredentials}>
+                <h3>Register new user</h3>
                 <div>
                     Username
                     <input
