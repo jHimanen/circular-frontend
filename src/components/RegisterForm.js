@@ -18,9 +18,9 @@ const RegisterForm = ({ register }) => {
     return (
         <div>
             <form onSubmit={submitCredentials}>
-                <h3>Register new user</h3>
+                <h3>Rekisteröi uusi käyttäjä</h3>
                 <div>
-                    Username
+                    Käyttäjätunnus
                     <input
                         type="text"
                         value={username}
@@ -29,7 +29,7 @@ const RegisterForm = ({ register }) => {
                     />
                 </div>
                 <div>
-                    Email
+                    Sähköposti
                     <input
                         type="text"
                         value={email}
@@ -38,7 +38,7 @@ const RegisterForm = ({ register }) => {
                     />
                 </div>
                 <div>
-                    Password
+                    Salasana
                     <input
                         type="password"
                         value={password}
@@ -46,7 +46,7 @@ const RegisterForm = ({ register }) => {
                         onChange={({ target }) => setPassword(target.value)}
                     />
                 </div>
-                <button type="submit">Register</button>
+                <button type="submit">Rekisteröi</button>
             </form>
         </div>
     )

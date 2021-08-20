@@ -16,9 +16,9 @@ const LoginForm = ({ login }) => {
     return (
         <div>
             <form onSubmit={submitCredentials}>
-                <h3>Login</h3>
+                <h3>Kirjaudu sisään</h3>
                 <div>
-                    Username
+                    Käyttäjätunnus
                     <input
                         type="text"
                         value={identifier}
@@ -27,7 +27,7 @@ const LoginForm = ({ login }) => {
                     />
                 </div>
                 <div>
-                    Password
+                    Salasana
                     <input
                         type="password"
                         value={password}
@@ -35,7 +35,7 @@ const LoginForm = ({ login }) => {
                         onChange={({ target }) => setPassword(target.value)}
                     />
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit">Kirjaudu sisään</button>
             </form>
         </div>
     )
