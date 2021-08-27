@@ -20,7 +20,7 @@ const App = () => {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    noticeService.getAll().then(notices =>
+    noticeService.getAll(user).then(notices =>
       setNotices( notices.slice(0, 3) )  
     )
     materialService.getAll().then(materials =>
@@ -69,7 +69,7 @@ const App = () => {
 
   const handleRegistration = async (credentials) => {
     try {
-      const newUser = await registerService.register(credentials)
+      await registerService.register(credentials)
       console.log('Registering new user with', credentials.username, credentials.email, credentials.password)
     } catch (error) {
       console.log(error.message)
