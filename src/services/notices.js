@@ -1,20 +1,15 @@
 import axios from 'axios'
 
-const url = 'http://0.0.0.0:1337/notices'
+const baseURL = 'http://0.0.0.0:1337/notices'
 
 const getAll = async (user) => {
+    console.log(user)
     if (user === null) {
-        const response = await axios.get(url)
+        const response = await axios.get(baseURL)
         return response.data
     } else {
-        const tags = user.user.tags.forEach(tag => tag.tag)
-        const options = {
-            params: {
-                token: user.user.token.token,
-                tags: tags
-            }
-        }
-        const response = await axios.get(url, options)
+        const url = `${baseURL}?token=${user.user.token.token}`
+        const response = await axios.get(url)
         return response.data
     }
 }

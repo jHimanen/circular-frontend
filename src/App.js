@@ -20,23 +20,30 @@ const App = () => {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
+    console.log('Checking for user...')
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      console.log('User found and set!')
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log('Rendering notices...')
     noticeService.getAll(user).then(notices =>
       setNotices( notices.slice(0, 3) )  
     )
+    console.log('Done!')
+  }, [user])
+
+  useEffect(() => {
     materialService.getAll().then(materials =>
       setMaterials( materials )
     )
     articleService.getAll().then(articles =>
       setArticles( articles.slice(0, 5) )
     )
-  }, [])
-
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-    }
   }, [])
 
   const chooseDetailed = (id) => {
