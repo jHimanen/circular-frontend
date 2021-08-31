@@ -39,7 +39,7 @@ const App = () => {
 
   useEffect(() => {
     materialService.getAll().then(materials =>
-      setMaterials( materials )
+      setMaterials( materials.slice(0, 4) )
     )
     articleService.getAll().then(articles =>
       setArticles( articles.slice(0, 5) )

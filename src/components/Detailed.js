@@ -9,12 +9,20 @@ const Detailed = ({ material }) => {
             return 'Tämä ei ole jätemateriaalia.'
         }
     }
+
+    const displayMaterialType = () => {
+        if (material.type === 'nondangerous') {
+            return 'Vaaraton'
+        } else {
+            return 'Tuntematon'
+        }
+    }
     
     return (
         <div>
             <p>Materiaali: {material.classification}</p>
             <p>Kuvaus: {material.description}</p>
-            <p>Tyyppi: {material.type}</p>
+            <p>Tyyppi: {displayMaterialType()}</p>
             <p>{displayWaste()}</p>
         </div>
     )

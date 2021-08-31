@@ -1,9 +1,10 @@
 import React from 'react'
+import './Notice.css'
 
 const Notice = ({ notice }) => {
     return (
-        <div>
-            <h4>{notice.title}</h4>
+        <div className='noticebox'>
+            <h4 className='titlebox'>{notice.title}</h4>
             <p>Ilmoituksen tyyppi: {notice.rfoType}</p>
             <p>Luotu {notice.created}</p>
         </div>
